@@ -7,6 +7,17 @@ def is_natural(number: int) -> bool:
 def is_whole(number: int) -> bool:
     return True if isinstance(number, int) and number >= 0 else False
 
+def get_divisors(n: int) -> list[int]:
+    divisors = []
+    i = 1
+    while i * i <= n:
+        if n % i == 0:
+            divisors.append(i)
+            k = n // i
+            if i != k: divisors.append(k)
+        i += 1
+    return sorted(divisors)
+
 def is_mersenne_number(number: int) -> bool:
     if not is_natural(number): raise ValueError("Parameter must be a natural number!")
     m = number + 1
