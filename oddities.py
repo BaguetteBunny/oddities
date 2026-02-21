@@ -1,17 +1,6 @@
 import constants as C
 from math import isqrt
 
-def is_natural(number: int) -> bool:
-    return isinstance(number, int) and number > 0
-
-def is_whole(number: int) -> bool:
-    return isinstance(number, int) and number >= 0
-
-def is_perfect_square(number: int) -> bool:
-    if not is_natural(number): raise ValueError("Parameter must be a natural number!")
-    root = isqrt(number)
-    return root * root == number
-
 def get_divisors(n: int) -> list[int]:
     divisors = []
     i = 1
@@ -23,14 +12,26 @@ def get_divisors(n: int) -> list[int]:
         i += 1
     return sorted(divisors)
 
+def get_mersenne_exponent(number: int) -> int:
+    if not is_mersenne_number(number): raise ValueError("Parameter must be a mersenne prime!")
+    return (number+1).bit_length() - 1
+
+
+def is_natural(number: int) -> bool:
+    return isinstance(number, int) and number > 0
+
+def is_whole(number: int) -> bool:
+    return isinstance(number, int) and number >= 0
+
+def is_perfect_square(number: int) -> bool:
+    if not is_natural(number): raise ValueError("Parameter must be a natural number!")
+    root = isqrt(number)
+    return root * root == number
+
 def is_mersenne_number(number: int) -> bool:
     if not is_natural(number): raise ValueError("Parameter must be a natural number!")
     m = number + 1
     return m & (m-1) == 0
-
-def get_mersenne_exponent(number: int) -> bool:
-    if not is_mersenne_number(number): raise ValueError("Parameter must be a mersenne prime!")
-    return (number+1).bit_length() - 1
 
 def is_mersenne_prime(exponent: int) -> bool:
     if not is_natural(exponent): raise ValueError("Parameter must be a natural number!")
