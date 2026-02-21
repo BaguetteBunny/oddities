@@ -60,3 +60,7 @@ def is_fermat_number(number: int) -> bool:
         return False
     
     return n.bit_length() - 1    
+
+def is_sublime_number(number: int) -> bool:
+    if not is_natural(number): raise ValueError("Parameter must be a natural number!")
+    return number in C.SUBLIME_NUMBERS
