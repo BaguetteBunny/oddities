@@ -1,9 +1,9 @@
 import constants as C
 
-def is_natural(number: int):
+def is_natural(number: int) -> bool:
     return True if isinstance(number, int) and number > 0 else False
 
-def is_whole(number: int):
+def is_whole(number: int) -> bool:
     return True if isinstance(number, int) and number >= 0 else False
 
 def is_mersenne_prime(exponent: int) -> bool:
@@ -18,11 +18,11 @@ def is_mersenne_prime(exponent: int) -> bool:
         s = (s**2 - 2) % mersenne
     return s == 0
 
-def is_fermat_prime(number: int):
+def is_fermat_prime(number: int) -> bool:
     if not is_natural(number): raise ValueError("Parameter must be a natural number!")
     return number in C.FERMAT_NUMBERS and number < 65538 # Biggest known fermat prime is 65537
 
 
-def is_fermat_number(number: int):
+def is_fermat_number(number: int) -> bool:
     if not is_natural(number): raise ValueError("Parameter must be a natural number!")
     return number in C.FERMAT_NUMBERS
