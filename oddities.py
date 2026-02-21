@@ -1,7 +1,16 @@
 import constants as C
 from math import isqrt
 
+# Util
+def is_natural(number: int) -> bool:
+    return isinstance(number, int) and number > 0
+
+def is_whole(number: int) -> bool:
+    return isinstance(number, int) and number >= 0
+
+# Getters
 def get_divisors(n: int) -> list[int]:
+    if not is_natural(n): raise ValueError("Parameter must be a natural number!")
     divisors = []
     i = 1
     while i * i <= n:
@@ -16,12 +25,23 @@ def get_mersenne_exponent(number: int) -> int:
     if not is_mersenne_number(number): raise ValueError("Parameter must be a mersenne prime!")
     return (number+1).bit_length() - 1
 
+def get_aliquot_sum(n: int) -> int:
+    if not is_natural(n): raise ValueError("Parameter must be a natural number!")
+    total = 0
+    i = 1
 
-def is_natural(number: int) -> bool:
-    return isinstance(number, int) and number > 0
+    while i * i < n:
+        if n % i == 0:
+            total += i
+            k = n // i
+            if i != k: total += i
+        i += 1
+    return total
 
-def is_whole(number: int) -> bool:
-    return isinstance(number, int) and number >= 0
+
+# Checkers
+def is_perfect_number(number: int) -> bool:
+    return get_aliquot_sum(number) == number
 
 def is_perfect_square(number: int) -> bool:
     if not is_natural(number): raise ValueError("Parameter must be a natural number!")
@@ -65,3 +85,6 @@ def is_fermat_number(number: int) -> bool:
 def is_sublime_number(number: int) -> bool:
     if not is_natural(number): raise ValueError("Parameter must be a natural number!")
     return number in C.SUBLIME_NUMBERS
+
+def is_quasiperfect_number(number: int) -> bool:
+    return get_aliquot_sum(number) == 2*number + 1
