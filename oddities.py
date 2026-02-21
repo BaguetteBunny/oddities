@@ -1,11 +1,16 @@
 import constants as C
-from math import sqrt
+from math import isqrt
 
 def is_natural(number: int) -> bool:
-    return True if isinstance(number, int) and number > 0 else False
+    return isinstance(number, int) and number > 0
 
 def is_whole(number: int) -> bool:
-    return True if isinstance(number, int) and number >= 0 else False
+    return isinstance(number, int) and number >= 0
+
+def is_perfect_square(number: int) -> bool:
+    if not is_natural(number): raise ValueError("Parameter must be a natural number!")
+    root = isqrt(number)
+    return root * root == number
 
 def get_divisors(n: int) -> list[int]:
     divisors = []
@@ -30,7 +35,7 @@ def get_mersenne_exponent(number: int) -> bool:
 def is_mersenne_prime(exponent: int) -> bool:
     if not is_natural(exponent): raise ValueError("Parameter must be a natural number!")
     elif (exponent == 1): return False
-    elif (exponent == 2): return False
+    elif (exponent == 2): return True
 
     s = 4
     mersenne = 2**exponent - 1
