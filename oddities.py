@@ -68,6 +68,10 @@ def is_erdos_number(number: int) -> bool:
 def is_abundant_number(number: int) -> bool:
     return get_sum_of_all_divisor(number, aliquot = True) > number
 
+def is_deficient_number(number: int) -> bool:
+    return get_sum_of_all_divisor(number, aliquot = True) < number
+
+
 def is_highly_abundant_number(number: int) -> bool:
     sig_n = get_sum_of_all_divisor(number, aliquot = False)
 
