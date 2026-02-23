@@ -71,6 +71,15 @@ def is_abundant_number(number: int) -> bool:
 def is_deficient_number(number: int) -> bool:
     return get_sum_of_all_divisor(number, aliquot = True) < number
 
+def is_highly_composite_number(number: int) -> bool:
+    if not is_natural(number): raise ValueError("Parameter must be a natural number!")
+
+    max_divisor_count = len(get_divisors(number))
+
+    for i in range(1, number):
+        if len(get_divisors(i)) >= max_divisor_count:
+            return False
+    return True
 
 def is_highly_abundant_number(number: int) -> bool:
     sig_n = get_sum_of_all_divisor(number, aliquot = False)
