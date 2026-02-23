@@ -108,6 +108,10 @@ def is_mersenne_number(number: int) -> bool:
     m = number + 1
     return m & (m-1) == 0
 
+def is_double_mersenne_prime(number: int) -> bool:
+    if not is_natural(number): raise ValueError("Parameter must be a natural number!")
+    return number in C.DOUBLE_MERSENNE_PRIMES
+
 def is_mersenne_prime(exponent: int) -> bool:
     if not is_natural(exponent): raise ValueError("Parameter must be a natural number!")
     elif (exponent == 1): return False
