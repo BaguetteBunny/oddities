@@ -1,10 +1,4 @@
+import oddities, math
 
 
-
-def main():
-    return
-
-
-
-if __name__ == "main":
-    main()
+print(math.sqrt(64))
