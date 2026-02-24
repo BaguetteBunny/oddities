@@ -4,6 +4,7 @@ import oddities
 assert oddities.get_divisors(6) == [1, 2, 3, 6]
 assert oddities.get_sum_of_all_divisor(1, True) == 0
 
+assert oddities.is_arithmetic_number(49)
 assert oddities.is_perfect_number(6)
 assert oddities.is_almost_perfect_number(33554432)
 assert oddities.is_superperfect_number(262144)

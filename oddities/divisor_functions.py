@@ -6,7 +6,9 @@ def is_abundant_number(number: int) -> bool:
 def is_almost_perfect_number(number: int) -> bool:
     return oddities.utils.get_sum_of_all_divisor(number, aliquot = True) == number - 1
 
-def is_arithmetic_number(k: int) -> bool: raise NotImplementedError
+def is_arithmetic_number(k: int) -> bool:
+    s = oddities.utils.get_divisors(k)
+    return sum(s) % len(s) == 0
 
 def is_betrothed_number(k: int) -> bool: raise NotImplementedError
 
